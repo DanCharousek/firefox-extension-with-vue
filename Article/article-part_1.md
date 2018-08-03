@@ -40,7 +40,7 @@ I hope each property in the `manifest.json` file is self-explanatory, but just t
 
 * **manifest_version** - Indicates the version of manifest file itself. For more details visit Mozilla's documentation.
 * **name** - This is how we named our extension
-* **version** - This is string that indicates current version of our extension. For more information about how this should be incremented and threated visit semver TODO: Provide link
+* **version** - This is a string that indicates current version of our extension. You can name it whatever you want, but there are some conventions that you can follow. For more information see [Semver](https://semver.com)
 
 Right now our whole project looks like this.
 
@@ -70,9 +70,9 @@ So let's fix that "not look anyhow" part. And by that, I mean let's give our ext
 
 ### Providing the extension with an icon
 
-I don't have any good candidates for an icon with me at the moment, but I've found and image of me that I often use, so I am gonna go with this one. I hope you'll forgive me someday. Of course you are free to use any picture you like.
+I don't have any good candidates for an icon with me at the moment, but I've found an image of me that I often use, so I am gonna go with this one. I hope you'll forgive me someday. Of course you are free to use any picture you like.
 
-Let's create a folder where our image and later on most of the application source code.
+Let's create a folder where our images and later on most of the application source code will live.
 
     mkdir -p assets/img
 
@@ -99,7 +99,7 @@ The key property for specifying icons is, you'd never guess, a property called `
         }
     }
 
-Now if you hit the reload button, instead of the default extension icon (the puzzle piece) icon you provided should appear.
+Now if you hit the reload button, instead of the default extension icon (the puzzle piece) the one you provided should appear.
 
 Now it's got some look so we can finally show it to the friends. But it still does nothing much. So you know what, better don't show it to anyone yet...
 
@@ -111,7 +111,7 @@ We want to allow users to somehow interact with our extension. Browser action is
 
 ![Browser actions](img/browser_actions.png)
 
-The popup that is opened once you click the button is simple html page so before we create the button, let's prepare simple HTML page called app.html for that purpose.
+The popup that is opened once you click the button is simple html page so before we create the button, let's prepare simple HTML page called `app.html` for that purpose.
 
     touch app.html
 
@@ -216,6 +216,26 @@ And finally the `app.js`
 Reload the extension and try to hit the button if it properly shows an alert window. You should get something similar to this:
 
 ![Triggering an event](img/triggering_an_event.png)
+
+Last thing to do is to remove the call of the `alert` function and replace it with actual request to browser to get all opened tabs:
+
+    const btn = document.querySelector('#button');
+    btn.addEventListener('click', loadTabs);
+
+    function loadTabs() {
+        // This is the request to obtain an array of active tabs. It returns a promise.
+        // It accepts a config object (see docs)
+        browser.tabs.query({ currentWindow:true })
+            .then(tabs => {
+                const results = document.querySelector('#results');
+                results.innerHTML = '';
+                for (let tab of tabs) {
+                    results.innerHTML += `<li>${tab.title}: ${tab.url}</li>`;
+                }
+            });
+    }
+
+Now, after clicking the button, you should see all tabs listed in the unordered list. Congrats!
 
 Let me show you one last thing before wrapping up the first part of this article.
 
