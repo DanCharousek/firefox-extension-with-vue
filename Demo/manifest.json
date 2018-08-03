@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "MyExtension",
+  "version": "1.0.0",
+  "icons": {
+    "48": "assets/img/logo.png"
+  },
+  "browser_action": {
+    "default_icon": "assets/img/logo.png",
+    "default_title": "Opens MyExtension",
+    "default_popup": "app.html"
+  },
+  "permissions": ["tabs"]
+}
