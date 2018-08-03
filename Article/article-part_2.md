@@ -1,0 +1,1 @@
+# Firefox extension with VueJS - Part 2
