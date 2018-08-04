@@ -145,7 +145,7 @@ Now we need to register this html as a default popup in `manifest.json`.
 
 Pay attention to the *browser_action* property which describes the default popup. Note that I've used the same image as a extension logo and popup icon. These two can differ but I decided to do so to limit number of images used in the demo app.
 
-*Default title* is the text that is shown when user hovers over the button and *default popup* is our html that is used as the popup.
+*Default title* is the text that is shown when user hovers over the button and *default popup* is our html that is used as the popup. You can read more about browser action in [official docs](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action).
 
 Go ahead, reload your extension in `about:debugging` and you should now see the button.
 
