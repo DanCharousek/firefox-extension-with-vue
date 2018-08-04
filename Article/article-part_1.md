@@ -40,7 +40,7 @@ I hope each property in the `manifest.json` file is self-explanatory, but just t
 
 * **manifest_version** - Indicates the version of manifest file itself. For more details visit Mozilla's documentation.
 * **name** - This is how we named our extension
-* **version** - This is a string that indicates current version of our extension. You can name it whatever you want, but there are some conventions that you can follow. For more information see [Semver](https://semver.org)
+* **version** - This is a string that indicates current version of our extension. You can name it whatever you want, but there are some conventions that you can follow. For more information see [Semver](https://semver.org).
 
 Right now our whole project looks like this.
 
