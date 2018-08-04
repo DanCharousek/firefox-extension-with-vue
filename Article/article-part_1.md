@@ -62,7 +62,7 @@ Click the *Load Temporary Add-on* button and open your `manifest.json` file. Now
 
 Now you've successfully managed to create and temporary load a firefox extension. Even though It's a great accomplishment and something to be proud of let's be real here. It's useless.
 
-TODO: Insert image of sad firefox extension
+![Sad extension](img/sad_extension.png)
 
 It does not look anyhow, it does not do anything, it just sits there taking resources (almost nothing, but that's not the point).
 
@@ -70,7 +70,8 @@ So let's fix that "not look anyhow" part. And by that, I mean let's give our ext
 
 ### Providing the extension with an icon
 
-I don't have any good candidates for an icon with me at the moment, but I've found an image of me that I often use, so I am gonna go with this one. I hope you'll forgive me someday. Of course you are free to use any picture you like.
+I will use a simple svg icon from [flaticon.com](https://www.flaticon.com/free-icon/squares_565998).
+Of course you are free to use any picture you like.
 
 Let's create a folder where our images and later on most of the application source code will live.
 
@@ -83,19 +84,19 @@ Our project now looks like this
     MyExtension
         assets/
             img/
-                logo.png
+                logo.svg
         manifest.json
 
 If you hit the *reload* button in the `about:debugging` page, you'll notice that nothing happens. To actually tell the extension to use our image as an icon we need to tell it explicitly. To do so, let's update our `manifest.json` file.
 
-The key property for specifying icons is, you'd never guess, a property called `icons`. It is an object where key is dimensions of the icon and the value is path to it. You can read more about it here. TODO: Link to Firefox docs.
+The key property for specifying icons is, you'd never guess, a property called `icons`. It is an object where key is dimensions of the icon and the value is path to it. You can read more about it [here](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/icons).
 
     {
         "manifest_version": 2,
         "name": "MyExtension",
         "version": "1.0.0",
         "icons": {
-            "48": "assets/img/logo.png"
+            "48": "assets/img/logo.svg"
         }
     }
 
@@ -134,10 +135,10 @@ Now we need to register this html as a default popup in `manifest.json`.
         "name": "MyExtension",
         "version": "1.0.0",
         "icons": {
-            "48": "assets/img/logo.png"
+            "48": "assets/img/logo.svg"
         },
         "browser_action": {
-            "default_icon": "assets/img/logo.png",
+            "default_icon": "assets/img/logo.svg",
             "default_title": "Opens MyExtension",
             "default_popup": "app.html"
         }
@@ -166,10 +167,10 @@ As you might guess, this again takes place in `manifest.js`. This time it's prop
         "name": "MyExtension",
         "version": "1.0.0",
         "icons": {
-            "48": "assets/img/logo.png"
+            "48": "assets/img/logo.svg"
         },
         "browser_action": {
-            "default_icon": "assets/img/logo.png",
+            "default_icon": "assets/img/logo.svg",
             "default_title": "Opens MyExtension",
             "default_popup": "app.html"
         },
