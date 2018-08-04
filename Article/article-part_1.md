@@ -70,8 +70,7 @@ So let's fix that "not look anyhow" part. And by that, I mean let's give our ext
 
 ### Providing the extension with an icon
 
-I will use a simple svg icon from [flaticon.com](https://www.flaticon.com/free-icon/squares_565998).
-Of course you are free to use any picture you like.
+I don't have any good candidates for an icon with me at the moment, but I've found and image of me that I often use, so I am gonna go with this one. I hope you'll forgive me someday. Of course you are free to use any picture you like.
 
 Let's create a folder where our images and later on most of the application source code will live.
 
@@ -84,7 +83,7 @@ Our project now looks like this
     MyExtension
         assets/
             img/
-                logo.svg
+                logo.png
         manifest.json
 
 If you hit the *reload* button in the `about:debugging` page, you'll notice that nothing happens. To actually tell the extension to use our image as an icon we need to tell it explicitly. To do so, let's update our `manifest.json` file.
@@ -96,7 +95,7 @@ The key property for specifying icons is, you'd never guess, a property called `
         "name": "MyExtension",
         "version": "1.0.0",
         "icons": {
-            "48": "assets/img/logo.svg"
+            "48": "assets/img/logo.png"
         }
     }
 
@@ -135,10 +134,10 @@ Now we need to register this html as a default popup in `manifest.json`.
         "name": "MyExtension",
         "version": "1.0.0",
         "icons": {
-            "48": "assets/img/logo.svg"
+            "48": "assets/img/logo.png"
         },
         "browser_action": {
-            "default_icon": "assets/img/logo.svg",
+            "default_icon": "assets/img/logo.png",
             "default_title": "Opens MyExtension",
             "default_popup": "app.html"
         }
@@ -167,10 +166,10 @@ As you might guess, this again takes place in `manifest.js`. This time it's prop
         "name": "MyExtension",
         "version": "1.0.0",
         "icons": {
-            "48": "assets/img/logo.svg"
+            "48": "assets/img/logo.png"
         },
         "browser_action": {
-            "default_icon": "assets/img/logo.svg",
+            "default_icon": "assets/img/logo.png",
             "default_title": "Opens MyExtension",
             "default_popup": "app.html"
         },
