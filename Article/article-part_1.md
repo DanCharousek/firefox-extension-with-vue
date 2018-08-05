@@ -20,9 +20,7 @@ So with that in mind, let's create a new directory called `MyExtension` and ente
     mkdir MyExtension
     cd MyExtension
 
-A firefox extension might contain lot of other directories and files, but some of them are optional and in some cases you might not need them at all.
-
-So let's talk about the mandatory ones. Actually, I should say the mandatory one. The only required file for firefox extension is `manifest.json` which should be located in the root directory of our extension. So let's create one
+A firefox extension might contain a lot of other optional directories and files, so let's just talk about the mandatory ones. Actually, I should say the mandatory one. The only required file for a firefox extension is `manifest.json`, which should be located in the root directory of our extension. So let's create one
 
     touch manifest.json
 
@@ -38,7 +36,7 @@ This is the smallest working configuration for a firefox extension to work. As y
 
 I hope each property in the `manifest.json` file is self-explanatory, but just to be sure, here's quick overview:
 
-* **manifest_version** - Indicates the version of manifest file itself. For more details visit Mozilla's documentation.
+* **manifest_version** - Indicates the version of manifest file itself. For more details visit Mozilla's documentation [link here?].
 * **name** - This is how we named our extension
 * **version** - This is a string that indicates current version of our extension. You can name it whatever you want, but there are some conventions that you can follow. For more information see [Semver](https://semver.org).
 
@@ -46,11 +44,11 @@ Right now our whole project looks like this.
 
 ![Project structure after initial setup](img/init_project_structure.png)
 
-Before we extend it with more functionality, let's take a look at how to install and debug such extension.
+Before we extend it with more functionality, let's take a look at how to install and debug such an extension.
 
 ## Installing
 
-First, we need to open a debugging page. Into an URL bar in firefox enter `about:debugging` and hit enter. You should get something similar to this:
+First, we need to open a debugging page. In the firefox adress bar type `about:debugging` and hit enter. You should get something similar to this:
 
 ![Firefox debugging page](img/debugging_page.png)
 
@@ -60,23 +58,23 @@ Click the *Load Temporary Add-on* button and open your `manifest.json` file. Now
 
 ## Do something
 
-Now you've successfully managed to create and temporary load a firefox extension. Even though It's a great accomplishment and something to be proud of let's be real here. It's useless.
+Now you've successfully managed to create and load a temporary firefox extension! Even though It's a great accomplishment and something to be proud of let's be real here. It's useless.
 
 ![Sad extension](img/sad_extension.png)
 
-It does not look anyhow, it does not do anything, it just sits there taking resources (almost nothing, but that's not the point).
+It doesn't look like anything, and it doesn't do anything yet; it just sits there taking resources (almost nothing, but that's not the point).
 
-So let's fix that "not look anyhow" part. And by that, I mean let's give our extension a way to present itself to the world - an icon.
+So let's fix that "doesn't look like anything" part. By that, I mean let's give our extension a way to present itself to the world - an icon.
 
 ### Providing the extension with an icon
 
-I don't have any good candidates for an icon with me at the moment, but I've found and image of me that I often use, so I am gonna go with this one. I hope you'll forgive me someday. Of course you are free to use any picture you like.
+I don't have any good candidates for an icon with me at the moment, but I've found and image of me that I often use, so I am gonna go with this one. I hope you'll forgive me someday ;). Of course you are free to use any picture you like.
 
 Let's create a folder where our images and later on most of the application source code will live.
 
     mkdir -p assets/img
 
-The `-p` option says that the command should create all directories on the path in case they do not exist. So in this case it will create an `asset` directory and `img` directory within it. Put your chosen icon image in the `img` folder and you're good to go.
+The `-p` option says that the command should create all directories on the path in case they do not exist. So in this case it will create an `asset` directory and `img` directory within it. Put your chosen icon image in the `img` folder--under the name `logo.png`--and you'll be good to go.
 
 Our project now looks like this
 
@@ -88,7 +86,7 @@ Our project now looks like this
 
 If you hit the *reload* button in the `about:debugging` page, you'll notice that nothing happens. To actually tell the extension to use our image as an icon we need to tell it explicitly. To do so, let's update our `manifest.json` file.
 
-The key property for specifying icons is, you'd never guess, a property called `icons`. It is an object where key is dimensions of the icon and the value is path to it. You can read more about it [here](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/icons).
+The key property for specifying icons is (you'd never guess) a property called `icons`. It is an object where key is dimensions of the icon and the value is path to it. You can read more about it [here](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/icons).
 
     {
         "manifest_version": 2,
@@ -101,7 +99,7 @@ The key property for specifying icons is, you'd never guess, a property called `
 
 Now if you hit the reload button, instead of the default extension icon (the puzzle piece) the one you provided should appear.
 
-Now it's got some look so we can finally show it to the friends. But it still does nothing much. So you know what, better don't show it to anyone yet...
+Now that it's got some look so we can finally show it to friends! But it still does nothing much. So you know what? Better not to show it to anyone yet...
 
 Instead of that, let's take a look at how to actually make our extension somehow useful.
 
@@ -115,10 +113,19 @@ The popup that is opened once you click the button is simple html page so before
 
     touch app.html
 
-and fill it with
+Now your file structure should look like this
+
+    MyExtension
+        app.html
+        assets/
+            img/
+                logo.png
+        manifest.json
+
+and fill `app.html` with the following contents
 
     <!DOCTYPE html>
-    <html>  
+    <html>
     <head>
         <meta charset="utf-8">
     </head>
@@ -143,9 +150,10 @@ Now we need to register this html as a default popup in `manifest.json`.
         }
     }
 
-Pay attention to the *browser_action* property which describes the default popup. Note that I've used the same image as a extension logo and popup icon. These two can differ but I decided to do so to limit number of images used in the demo app.
+Pay attention to the *browser_action* property which describes the default popup. Note that I've used the same image as a extension logo and popup icon. These two can differ, but I decided not to in order to limit number of images used in the demo app.
 
-*Default title* is the text that is shown when user hovers over the button and *default popup* is our html that is used as the popup. You can read more about browser action in [official docs](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action).
+*default_title* is the text that is shown when user hovers over the button.<br>
+*default_popup* is our html that is used as the popup. You can read more about *browser_action* in [official docs](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action).
 
 Go ahead, reload your extension in `about:debugging` and you should now see the button.
 
@@ -155,9 +163,9 @@ Congrats, you've successfully created first functional firefox extension and thi
 
 ### Requesting the permissions
 
-Before we dig into converting our extension to VueJS we need to improve it just a little bit. This article is not mainly focused on what kind of things you can do with your extension, but I think it's useful to demonstrate at least some things it can do. Let's take advantage of the extension ability to access some browser information which are not available in regular html page - accessing opened window and getting all of it's opened tabs.
+Before we dig into converting our extension to VueJS we need to improve it just a little bit. This article is not mainly focused on what kind of things you can do with your extension, but I think it's useful to demonstrate at least some things it can do. Let's take advantage of the extension's ability to access some browser information which is not available in regular browser app - accessing opened window and getting all of it's opened tabs.
 
-To do so, we need to explicitly ask for an access to browser tabs and it need to be granted to us by user. That's usually done during the installing process where user is asked if they agree with granting the permission to the extension.
+To do so, we need to explicitly ask for an access to browser tabs and it need to be granted to us by user. That's usually done during the installing process where the user is asked if they agree to granting certain permissions to the extension.
 
 As you might guess, this again takes place in `manifest.js`. This time it's property called *permissions* and it holds an array of all permissions requested by the extension. So go ahead and put `tabs` in that array.
 
@@ -176,7 +184,7 @@ As you might guess, this again takes place in `manifest.js`. This time it's prop
         "permissions": ["tabs"]
     }
 
-Now, when you try to install the extension you will get prompted to confirm to grant the permission the extension asks. Well, actually you won't get prompted with anything since we are in debugging mode, but trust me, it will be there.
+Now, when you try to install the extension you will be prompted to grant the permission the extension asks for. Well, actually you won't get prompted with anything since we are in debugging mode, but trust me, it will be there.
 
 ### Add some interactivity
 
@@ -192,7 +200,7 @@ But before that, let's create a button in `app.html` that will trigger an event 
 	</body>
     ...
 
-Now we need to create `loadTabs()` function and register it as an onlick listener. So let's create a file called `app.js` and put it in the root folder of our extension register the function and link it in the `app.html`.
+Now we need to create `loadTabs()` function and register it as an onlick listener. So let's create a file called `app.js`, and put it in the root folder of our extension. Register the function and link it in the `app.html`.
 
     ...
 	<body>
@@ -207,31 +215,36 @@ Now we need to create `loadTabs()` function and register it as an onlick listene
 And finally the `app.js`
 
     const btn = document.querySelector('#button');
-    btn.addEventListener('click', loadTabs);
+    if (btn)
+        btn.addEventListener('click', loadTabs);
 
     function loadTabs() {
         alert('Hello there!');
     }
 
-Reload the extension and try to hit the button if it properly shows an alert window. You should get something similar to this:
+Reload the extension and click the button. If it properly shows an alert window, you should get something similar to this:
 
 ![Triggering an event](img/triggering_an_event.png)
 
 Last thing to do is to remove the call of the `alert` function and replace it with actual request to browser to get all opened tabs:
 
     const btn = document.querySelector('#button');
-    btn.addEventListener('click', loadTabs);
+    if (btn)
+        btn.addEventListener('click', loadTabs);
 
     function loadTabs() {
         // This is the request to obtain an array of active tabs. It returns a promise.
         // It accepts a config object (see docs)
         browser.tabs.query({ currentWindow:true })
             .then(tabs => {
-                const results = document.querySelector('#results');
-                results.innerHTML = '';
+                const results = document.querySelector('#results'),
+                      parts = [];
+
                 for (let tab of tabs) {
-                    results.innerHTML += `<li>${tab.title}: ${tab.url}</li>`;
+                    parts.push(`<li>${tab.title}: ${tab.url}</li>`);
                 }
+
+                results.innerHTML = parts.join('');
             });
     }
 
@@ -247,6 +260,6 @@ Click the three dots button on the very top right corner of the inspection windo
 
 ![Disable popup auto-hide](img/popup_debugging.png)
 
-And that's all to the first part. I thank you very much  if you managed to read through out the article all the way down here.
+And that's all to the first part! Don't miss part two on using VueJS to build the extension's interface!
 
-This article is published on [Github]() as an opensource project, so if you have any recommendations, or found any typo or mistake, do not hesitate contributing. Only if you want, of course.
+This article is published on [Github]() as an opensource project, so if you have any recommendations, or found any typo or mistake, do not hesitate contributing!
