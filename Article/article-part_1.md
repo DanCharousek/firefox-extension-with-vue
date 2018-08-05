@@ -36,7 +36,7 @@ This is the smallest working configuration for a Firefox extension to work. As y
 
 I hope each property in the `manifest.json` file is self-explanatory, but just to be sure, here's quick overview:
 
-* **manifest_version** - Indicates the version of manifest file itself. For more details visit Mozilla's documentation [https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json].
+* **manifest_version** - Indicates the version of manifest file itself. For more details visit Mozilla's documentation https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json.
 * **name** - This is what we named our extension
 * **version** - This is a string that indicates current version of our extension. You can name it whatever you want, but there are some conventions that you can follow. For more information see [Semver](https://semver.org).
 
