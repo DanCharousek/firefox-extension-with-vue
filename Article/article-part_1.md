@@ -263,3 +263,6 @@ Click the three dots button on the very top right corner of the inspection windo
 And that wraps up Part 1 of this article. In Part 2, we will look at adding Vue into the mix by utilising it to build our browser extension's interface.
 
 This article is published on [Github](https://github.com/DanCharousek/firefox-extension-with-vue/) as an opensource project, so if you have any recommendations, or found any typo or mistake, do not hesitate contributing!
+
+## Credits
+Special thanks to [Sunil](https://medium.com/@sunilsandhu) and [Wyatt](https://medium.com/@th317erd) for their contributions to this article.
