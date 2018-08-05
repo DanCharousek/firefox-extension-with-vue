@@ -1,11 +1,11 @@
-# Firefox extension with VueJS - Part 1
+# I built a browser extension with Vue
 
-In this article I'd like to show you how to create very simple firefox extension using popular JavaScript framework VueJS.
+In this article I'd like to show you how to create very simple firefox extension using popular JavaScript framework Vue.
 
-This article is divided into two parts. The first part covers all the necessary basics of creating a firefox extension and the second one focuses on the process of converting it to VueJS.
+This article is divided into two parts. The first part covers all the necessary basics of creating a firefox extension and the second one focuses on the process of converting it to Vue.
 
 ## Prerequisites
-Even though no advanced Vue technics are used through out the article and a knowledge of JavaScript should be sufficient, It's recommend for the reader to have at least basic understanding of Vue.
+Even though no advanced Vue techniques are used through out the article and a knowledge of JavaScript should be sufficient, It's recommend for the reader to have at least basic understanding of Vue. You will also see me creating files via the Terminal/Command Line. Although this is a nice, clean way to create new files and folders, it is not a requirement - as these things can be created however you prefer to :)
 
 ## Table of contents
 * [Creating a firefox extension](#creating-a-firefox-extension)
@@ -13,14 +13,14 @@ Even though no advanced Vue technics are used through out the article and a know
 * [Do something](#do-something)
 
 ## Creating a firefox extension
-In nutshell firefox extension is a directory that contains some files. That's all it is. It might not sound technical at all, but bare with me, I'll get to that later on.
+In a nutshell, a Firefox extension is a directory that contains some files. That's all it is. It might not sound technical at all, but bare with me, I'll get to that later on.
 
 So with that in mind, let's create a new directory called `MyExtension` and enter it.
 
     mkdir MyExtension
     cd MyExtension
 
-A firefox extension might contain a lot of other optional directories and files, so let's just talk about the mandatory ones. Actually, I should say the mandatory one. The only required file for a firefox extension is `manifest.json`, which should be located in the root directory of our extension. So let's create one
+A Firefox extension might contain a lot of other optional directories and files, so let's just talk about the mandatory ones. Actually, I should say the mandatory one. The only required file for a Firefox extension is `manifest.json`, which should be located in the root directory of our extension. So let's create one
 
     touch manifest.json
 
@@ -32,12 +32,12 @@ and fill it with following json object:
         "version": "1.0.0"
     }
 
-This is the smallest working configuration for a firefox extension to work. As you can guess, it's not very useful at the moment, but it's a good start.
+This is the smallest working configuration for a Firefox extension to work. As you can guess, it's not very useful at the moment, but it's a good start.
 
 I hope each property in the `manifest.json` file is self-explanatory, but just to be sure, here's quick overview:
 
-* **manifest_version** - Indicates the version of manifest file itself. For more details visit Mozilla's documentation [link here?].
-* **name** - This is how we named our extension
+* **manifest_version** - Indicates the version of manifest file itself. For more details visit Mozilla's documentation [https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json].
+* **name** - This is what we named our extension
 * **version** - This is a string that indicates current version of our extension. You can name it whatever you want, but there are some conventions that you can follow. For more information see [Semver](https://semver.org).
 
 Right now our whole project looks like this.
@@ -48,7 +48,7 @@ Before we extend it with more functionality, let's take a look at how to install
 
 ## Installing
 
-First, we need to open a debugging page. In the firefox adress bar type `about:debugging` and hit enter. You should get something similar to this:
+First, we need to open a debugging page. In the firefox address bar type `about:debugging` and hit enter. You should get something similar to this:
 
 ![Firefox debugging page](img/debugging_page.png)
 
@@ -99,7 +99,7 @@ The key property for specifying icons is (you'd never guess) a property called `
 
 Now if you hit the reload button, instead of the default extension icon (the puzzle piece) the one you provided should appear.
 
-Now that it's got some look so we can finally show it to friends! But it still does nothing much. So you know what? Better not to show it to anyone yet...
+Now that it's got some look so we can finally show it to friends! But it still doesn't do much. So you know what? Better not to show it to anyone yet...
 
 Instead of that, let's take a look at how to actually make our extension somehow useful.
 
@@ -159,15 +159,15 @@ Go ahead, reload your extension in `about:debugging` and you should now see the 
 
 ![Custom popup](img/popup_usage.png)
 
-Congrats, you've successfully created first functional firefox extension and this time, it even does something.
+Congrats, you've successfully created first functional Firefox extension and this time, it actually does something! :)
 
 ### Requesting the permissions
 
-Before we dig into converting our extension to VueJS we need to improve it just a little bit. This article is not mainly focused on what kind of things you can do with your extension, but I think it's useful to demonstrate at least some things it can do. Let's take advantage of the extension's ability to access some browser information which is not available in regular browser app - accessing opened window and getting all of it's opened tabs.
+Before we dig into converting our extension to Vue we need to improve it just a little bit. This article is not mainly focused on what kind of things you can do with your extension, but I think it's useful to demonstrate at least some things it can do. Let's take advantage of the extension's ability to access some browser information which is not available in a regular browser app, such as the ability to access an opened window and retrieve all of it's opened tabs.
 
-To do so, we need to explicitly ask for an access to browser tabs and it need to be granted to us by user. That's usually done during the installing process where the user is asked if they agree to granting certain permissions to the extension.
+To do so, we need to explicitly ask for access to browser tabs and it need to be granted to us by the user. That's usually done during the installing process where the user is asked if they agree to granting certain permissions to the extension.
 
-As you might guess, this again takes place in `manifest.js`. This time it's property called *permissions* and it holds an array of all permissions requested by the extension. So go ahead and put `tabs` in that array.
+As you might guess, this again takes place in `manifest.json`. This time it's property called *permissions* and it holds an array of all permissions requested by the extension. So go ahead and put `tabs` in that array.
 
     {
         "manifest_version": 2,
@@ -200,7 +200,7 @@ But before that, let's create a button in `app.html` that will trigger an event 
 	</body>
     ...
 
-Now we need to create `loadTabs()` function and register it as an onlick listener. So let's create a file called `app.js`, and put it in the root folder of our extension. Register the function and link it in the `app.html`.
+Now we need to create a `loadTabs()` function and register it as an onlick listener. So let's create a file called `app.js`, and put it in the root folder of our extension. Register the function and link it in the `app.html`.
 
     ...
 	<body>
@@ -254,12 +254,12 @@ Let me show you one last thing before wrapping up the first part of this article
 
 ### Popup debugging
 
-There will definitely be times when you will need to inspect elements of your popup window (an html document) as a regular html page. For these purposes there is a button *Debug* right next to `Reload` button in the *Temporary Extensions* section. This is no secret since the button is pretty well visible. But once you get to debugging, you'll notice that once you click the inspector window to play around with the elements, your popup gets closed. This is very inconvenient, but fortunately there is a fix to it.
+There will definitely be times when you will need to inspect elements of your popup window (an html document) as a regular html page. For these purposes there is a button *Debug* right next to `Reload` button in the *Temporary Extensions* section. This is no secret since the button is pretty visible. But once you get to debugging, you'll notice that once you click the inspector window to play around with the elements, your popup gets closed. This is very inconvenient, but fortunately there is a fix to it.
 
 Click the three dots button on the very top right corner of the inspection window and hit *Disable popup auto-hide*.
 
 ![Disable popup auto-hide](img/popup_debugging.png)
 
-And that's all to the first part! Don't miss part two on using VueJS to build the extension's interface!
+And that wraps up Part 1 of this article. In Part 2, we will look at adding Vue into the mix by utilising it to build our browser extension's interface.
 
-This article is published on [Github]() as an opensource project, so if you have any recommendations, or found any typo or mistake, do not hesitate contributing!
+This article is published on [Github](https://github.com/DanCharousek/firefox-extension-with-vue/) as an opensource project, so if you have any recommendations, or found any typo or mistake, do not hesitate contributing!
