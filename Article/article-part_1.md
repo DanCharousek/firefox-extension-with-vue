@@ -1,5 +1,7 @@
 # I built a browser extension with Vue
 
+![Firefox extension with vue](img/firefox-extension-with-vue.png)
+
 In this article I'd like to show you how to create very simple firefox extension using popular JavaScript framework Vue.
 
 This article is divided into two parts. The first part covers all the necessary basics of creating a firefox extension and the second one focuses on the process of converting it to Vue.
