@@ -3,7 +3,7 @@
   "name": "MyExtension",
   "version": "1.0.0",
   "icons": {
-    "48": "assets/img/logo.png"
+    "48": "assets/img/logo.svg"
   },
   "browser_action": {
     "default_icon": "assets/img/logo.png",

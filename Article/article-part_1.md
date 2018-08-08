@@ -1,6 +1,6 @@
 # I built a browser extension with Vue
 
-![Firefox extension with vue](img/firefox-extension-with-vue.png)
+![Firefox extension with vue](img/article_1/firefox-extension-with-vue.png)
 
 In this article I'd like to show you how to create very simple firefox extension using popular JavaScript framework Vue.
 
@@ -44,7 +44,7 @@ I hope each property in the `manifest.json` file is self-explanatory, but just t
 
 Right now our whole project looks like this.
 
-![Project structure after initial setup](img/init_project_structure.png)
+![Project structure after initial setup](img/article_1/init_project_structure.png)
 
 Before we extend it with more functionality, let's take a look at how to install and debug such an extension.
 
@@ -52,17 +52,17 @@ Before we extend it with more functionality, let's take a look at how to install
 
 First, we need to open a debugging page. In the firefox address bar type `about:debugging` and hit enter. You should get something similar to this:
 
-![Firefox debugging page](img/debugging_page.png)
+![Firefox debugging page](img/article_1/debugging_page.png)
 
 Click the *Load Temporary Add-on* button and open your `manifest.json` file. Now you should see your extension loaded in the *Temporary Extensions* section.
 
-![Temporary extension section](img/extension_loaded.png)
+![Temporary extension section](img/article_1/extension_loaded.png)
 
 ## Do something
 
 Now you've successfully managed to create and load a temporary firefox extension! Even though It's a great accomplishment and something to be proud of let's be real here. It's useless.
 
-![Sad extension](img/sad_extension.png)
+![Sad extension](img/article_1/sad_extension.png)
 
 It doesn't look like anything, and it doesn't do anything yet; it just sits there taking resources (almost nothing, but that's not the point).
 
@@ -109,7 +109,7 @@ Instead of that, let's take a look at how to actually make our extension somehow
 
 We want to allow users to somehow interact with our extension. Browser action is the little button in top right corner of your browser which usually opens a small popup that let you do stuff. Let's take a look at how to create one.
 
-![Browser actions](img/browser_actions.png)
+![Browser actions](img/article_1/browser_actions.png)
 
 The popup that is opened once you click the button is simple html page so before we create the button, let's prepare simple HTML page called `app.html` for that purpose.
 
@@ -159,7 +159,7 @@ Pay attention to the *browser_action* property which describes the default popup
 
 Go ahead, reload your extension in `about:debugging` and you should now see the button.
 
-![Custom popup](img/popup_usage.png)
+![Custom popup](img/article_1/popup_usage.png)
 
 Congrats, you've successfully created first functional Firefox extension and this time, it actually does something! :)
 
@@ -226,7 +226,7 @@ And finally the `app.js`
 
 Reload the extension and click the button. If it properly shows an alert window, you should get something similar to this:
 
-![Triggering an event](img/triggering_an_event.png)
+![Triggering an event](img/article_1/triggering_an_event.png)
 
 Last thing to do is to remove the call of the `alert` function and replace it with actual request to browser to get all opened tabs:
 
@@ -260,7 +260,7 @@ There will definitely be times when you will need to inspect elements of your po
 
 Click the three dots button on the very top right corner of the inspection window and hit *Disable popup auto-hide*.
 
-![Disable popup auto-hide](img/popup_debugging.png)
+![Disable popup auto-hide](img/article_1/popup_debugging.png)
 
 And that wraps up Part 1 of this article. In Part 2, we will look at adding Vue into the mix by utilising it to build our browser extension's interface.
 
