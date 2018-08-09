@@ -1,4 +1,4 @@
-# I built a browser extension with Vue
+# How I built a browser extension with Vue (Part 1)
 
 ![Firefox extension with vue](img/article_1/firefox-extension-with-vue.png)
 
