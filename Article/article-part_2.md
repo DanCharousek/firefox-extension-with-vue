@@ -1,4 +1,4 @@
-# Firefox extension with VueJS - Part 2
+# Firefox extension with VueJS (Part 2)
 
 In the second part of this article, I will show you how to Vueify the extension
 we built in the part one using [laravel mix](https://github.com/JeffreyWay/laravel-mix).
@@ -74,7 +74,7 @@ You should see your build passing and `dist` folder should appear in your root f
 ![After build](img/article_2/after_build.png)
 
 The dist version of `app.js` is the one we will link in `app.html`. Let's do that now
-and when in that file, let's clear that file a bit too:
+and while in that file, let's clear that file a bit too:
 
     <!DOCTYPE html>
     <html>
@@ -162,22 +162,22 @@ need modifying `app.js`.
 
 First, let's prepare the HTML:
 
-<template>
-    <div>
-        <ul class="tab-list">
-            <li class="tab-item">This is</li>
-            <li class="tab-item">where the tabs</li>
-            <li class="tab-item">will come</li>
-        </ul>
-        <button @click="getTabs()" class="button">Get tabs!</button>
-    </div>
-</template>
-<script>
-    ...
-</script>
-<style lang="scss">
-    ...
-</style>
+    <template>
+        <div>
+            <ul class="tab-list">
+                <li class="tab-item">This is</li>
+                <li class="tab-item">where the tabs</li>
+                <li class="tab-item">will come</li>
+            </ul>
+            <button @click="getTabs()" class="button">Get tabs!</button>
+        </div>
+    </template>
+    <script>
+        ...
+    </script>
+    <style lang="scss">
+        ...
+    </style>
 
 ![Markup preparation](img/article_2/markup_preparation.png)
 
