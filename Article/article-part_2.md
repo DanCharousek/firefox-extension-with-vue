@@ -245,7 +245,7 @@ data property with an array of tabs and list them in template.
     ...
     </style>
     
-Great and now we can finally create a `getTabs` method, that will fetch the tabs
+Great and now we can finally create the `getTabs` method, that will fetch the tabs
 from browser and display them:
 
     <template>
