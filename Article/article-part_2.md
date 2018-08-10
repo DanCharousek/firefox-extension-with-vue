@@ -222,7 +222,7 @@ So now it looks like this:
 ![Styled markup](img/article_2/styled_markup.png)
 
 This is great, but now the list items are hardcoded. Let's fix that by creating a 
-data property with an array of tabs and listing them in template.
+data property with an array of tabs and list them in template.
 
     <template>
         <div>
@@ -261,7 +261,7 @@ from browser and display them:
             methods: {
                 async getTabs() {
                     try {
-                        // Await the tabs (since query method calls promise)
+                        // Await the tabs (since query method returns a promise)
                         const fetchedTabs = await browser.tabs.query({ currentWindow: true });
                         // Clear current tabs
                         this.tabs = [];
