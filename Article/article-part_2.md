@@ -266,7 +266,7 @@ from browser and display them:
                         // Clear current tabs
                         this.tabs = [];
                         // Push new tabs
-                        fetchedTabs.map(tab => {
+                        fetchedTabs.forEach(tab => {
                             this.tabs.push(tab.title);
                         })
                     } catch (e) { console.log(e); }
